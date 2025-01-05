@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import Header from './components/Header'
+import Navbar from './components/Navbar'
 import './App.css'
 import HomeSection from './components/Home'
 import About from './components/About'
 import Divider from './components/Divider'
+import ProjectsSection from './components/Project'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,11 +17,13 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <main className='flex flex-col items-center'>
         <HomeSection/>
         <Divider/>
         <About/>
+        {/* <Divider/> */}
+        <ProjectsSection/>
       </main>
     </>
   )

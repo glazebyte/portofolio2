@@ -4,7 +4,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="w-full bg-blue-50 flex justify-center px-8"
+      className="w-full bg-blue-50 flex justify-center px-8 main-section"
       style={{ opacity: 1, transform: "none" }}
     >
       <div className="max-w-[45rem] mb-28 text-center leading-8 sm:mb-40 scroll-mt-28">

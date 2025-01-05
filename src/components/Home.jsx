@@ -1,11 +1,12 @@
-import { ArrowDownToLine, Linkedin, MoveRight } from 'lucide-react';
+import { ArrowDownToLine, MoveRight } from 'lucide-react';
 import React from 'react';
+import Github from '../assets/github.svg';
 
 function HomeSection() {
     return (
         <section
             id="home"
-            className="pt-56 px-8 sm:px-8"
+            className="pt-56 px-8 sm:px-8 main-section"
             style={{
                 backgroundColor: 'rgb(239, 246, 255)',
                 backgroundImage:
@@ -37,30 +38,20 @@ function HomeSection() {
                             <ArrowDownToLine color='grey' size={20}/>
                         </a>
                         <a
-                            className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack"
+                            className="bg-white p-3 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack"
                             href="https://www.linkedin.com/in/zaky-ahmad-fauzi"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Linkedin color='grey' size={20} fill='blue'/>
+                            <img width="30" height="30" src="https://img.icons8.com/color/48/linkedin.png" alt="linkedin"/>
                         </a>
                         <a
-                            className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack"
+                            className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack"
                             href="https://github.com/glazebyte"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                strokeWidth="0"
-                                viewBox="0 0 448 512"
-                                height="1em"
-                                width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path d="..." />
-                            </svg>
+                            <img width="30" height="30" src={Github} alt="github"/>
                         </a>
                     </div>
                 </div>
