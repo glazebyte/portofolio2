@@ -1,6 +1,29 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 function Header() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section');
+      const headerLinks = document.querySelectorAll('.header-link');
+      let current = 'home';
+
+      sections.forEach((section) => {
+        console.log(section.offsetTop, window.scrollY);
+        if (window.scrollY >= section.offsetTop -  window.innerHeight / 4) {
+          current = section.id;
+        }
+      });
+
+      headerLinks.forEach((headerLink) => {
+        const span = headerLink.querySelector('span');
+        // console.log(current)
+        span.classList.toggle('bg-gray-100', headerLink.href.includes(current));
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header>
       <div
@@ -29,12 +52,12 @@ function Header() {
               style={{ opacity: 1, transform: 'none' }}
             >
               <a
-                className="flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition"
+                className="flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition header-link"
                 href={link.href}
               >
                 {link.label}
                 <span
-                  className="bg-gray-100 rounded-full absolute inset-0 -z-10"
+                  className="rounded-full absolute inset-0 -z-10"
                   style={{ transform: 'none', transformOrigin: '50% 50% 0px' }}
                 ></span>
               </a>
