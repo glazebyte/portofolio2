@@ -5,6 +5,7 @@ import HomeSection from './components/Home'
 import About from './components/About'
 import Divider from './components/Divider'
 import ProjectsSection from './components/Project'
+import SkillSection from './components/Skill'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +25,7 @@ function App() {
         <About/>
         {/* <Divider/> */}
         <ProjectsSection/>
+        <SkillSection/>
       </main>
     </>
   )
