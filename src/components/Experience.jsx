@@ -11,7 +11,7 @@ function ExperienceSection() {
     ]
 
     return (
-        <section id="experience" class="w-full flex justify-center bg-blue-50 px-8">
+        <section id="experience" class="w-full flex justify-center bg-blue-50 px-8 main-section">
             <div class="container max-w-5xl px-4 py-12 mx-auto">
                 <div class="grid gap-4 mx-4 sm:grid-cols-12 text-left">
                     <div class="col-span-12 sm:col-span-3">

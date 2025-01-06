@@ -17,7 +17,7 @@ function Navbar() {
 
       navbarLinks.forEach((navbarLink) => {
         const span = navbarLink.querySelector('span');
-        // console.log(current)
+        console.log(current)
         span.classList.toggle('bg-gray-100', navbarLink.href.includes(current));
       });
     };
