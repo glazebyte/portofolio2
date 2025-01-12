@@ -8,7 +8,7 @@ function ProjectCard(props) {
     useEffect(() => {
         const currentCardRef = cardRef.current;
         const handleScroll = () => {  
-            const scale = (window.scrollY + (window.innerHeight / 2)) / currentCardRef.offsetTop
+            const scale = (window.scrollY + (window.innerHeight * 3 / 5)) / currentCardRef.offsetTop
             if(0.8 < scale && scale < 1) setCardScale(scale);
         }
         window.addEventListener('scroll', handleScroll);
