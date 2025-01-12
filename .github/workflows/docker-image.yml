@@ -2,48 +2,42 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
-    name: build and push image
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Github repository
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Containerfile --tag portofolio:$(date +%s)
-      
-    # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
-    # https://github.com/macbre/push-to-ghcr/issues/12
-    - name: Lowercase Registry
-      id: registry_case
-      uses: ASzc/change-string-case-action@v6
-      with:
-        string: ${{ env.IMAGE_REGISTRY }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GHCR_PAT }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Push Image to GHCR
-      uses: redhat-actions/push-to-registry@v2
-      id: push
-      env:
-        REGISTRY_USER: ${{ github.actor }}
-        REGISTRY_PASSWORD: ${{ github.GHCR_PAT }}
-      with:
-        image: ${{ steps.build_image.outputs.image }}
-        tags: ${{ steps.build_image.outputs.tags }}
-        registry: ${{ steps.registry_case.outputs.lowercase }}
-        username: ${{ env.REGISTRY_USER }}
-        password: ${{ env.REGISTRY_PASSWORD }}
-        extra-args: |
-          --compression-format=zstd
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build and Tag Docker Image
+        id: build_image
+        run: |
+          IMAGE_NAME="ghcr.io/${{ github.repository_owner }}/portofolio"
+          IMAGE_TAG=$(date +%s)
+          docker build . -f Containerfile -t "${IMAGE_NAME}:${IMAGE_TAG}"
+          echo "image=${IMAGE_NAME}" >> $GITHUB_ENV
+          echo "tag=${IMAGE_TAG}" >> $GITHUB_ENV
+
+      - name: Push Docker Image to GHCR
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Containerfile
+          push: true
+          tags: ${{ env.image }}:${{ env.tag }}
