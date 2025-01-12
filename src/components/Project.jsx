@@ -63,7 +63,7 @@ function ProjectsSection() {
                     `,
             }}
         >
-            <h2 class="text-4xl font-medium capitalize pb-8 text-center  bg-blue-50 w-full">My Projects</h2>
+            <h2 className="text-4xl font-medium capitalize pb-8 text-center  bg-blue-50 w-full">My Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
                 {projectLists.map((projectlist, index) => (
                     <ProjectCard key={index} {...projectlist} />

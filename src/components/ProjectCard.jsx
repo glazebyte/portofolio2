@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 function ProjectCard(props) {
     const { title, description, tags, imgsrc } = props
+    const cardRef = useRef(null)
+    const [cardScale,setCardScale] = useState(0.8);
+
+    useEffect(() => {
+        const currentCardRef = cardRef.current;
+        const handleScroll = () => {  
+            const scale = (window.scrollY + (window.innerHeight / 2)) / currentCardRef.offsetTop
+            if(0.8 < scale && scale < 1) setCardScale(scale);
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, )
+
+
     return (
-        <div className="group mb-3 sm:mb-8 last:mb-0" style={{ opacity: 1, transform: 'none' }}>
+        <div className="group mb-3 sm:mb-8 last:mb-0 project-card" style={{transform: `scale(${cardScale})`}} ref={cardRef}>
             <a href="/">
                 <section
                     className="bg-blue-100 max-w-[42rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] hover:bg-blue-200 transition sm:group-even:pl-8"

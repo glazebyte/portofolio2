@@ -9,7 +9,6 @@ function Navbar() {
       let current = 'home';
 
       sections.forEach((section) => {
-        console.log(section.offsetTop, window.scrollY);
         if (window.scrollY >= section.offsetTop - window.innerHeight / 4) {
           current = section.id;
         }
@@ -17,7 +16,6 @@ function Navbar() {
 
       navbarLinks.forEach((navbarLink) => {
         const span = navbarLink.querySelector('span');
-        console.log(current)
         span.classList.toggle('bg-gray-100', navbarLink.href.includes(current));
       });
     };
